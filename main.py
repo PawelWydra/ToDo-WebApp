@@ -8,45 +8,29 @@ from wtforms.validators import DataRequired, Email, Length
 import random
 
 #
-# class NewCafe(FlaskForm):
-#     name = StringField("Name", validators=[DataRequired()])
-#     map_url = StringField("Map_url", validators=[DataRequired()])
-#     img_url = StringField("Img_url", validators=[DataRequired()])
-#     location = StringField("Location", validators=[DataRequired()])
-#     seats = StringField("Seats", validators=[DataRequired()])
-#     toilet = StringField("Toilet", validators=[DataRequired()])
-#     wifi = StringField("wifi", validators=[DataRequired()])
-#     sockets = StringField("sockets", validators=[DataRequired()])
-#     calls = StringField("Calls", validators=[DataRequired()])
-#     coffee_price = StringField("Coffee_price", validators=[DataRequired()])
-#     submit = SubmitField("Add Cafe")
+class NewTask(FlaskForm):
+    name = StringField("Name", validators=[DataRequired()])
+    task_description = StringField("Description",validators=[DataRequired()])
+    submit = SubmitField("Add Cafe")
 
 
 app = Flask(__name__)
 Bootstrap(app)
 
 # Connect to Database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todo.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Task.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 
-# # Cafe TABLE Configuration
-# class Cafe(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(250), unique=True, nullable=False)
-#     map_url = db.Column(db.String(500), nullable=False)
-#     img_url = db.Column(db.String(500), nullable=False)
-#     location = db.Column(db.String(250), nullable=False)
-#     seats = db.Column(db.String(250), nullable=False)
-#     has_toilet = db.Column(db.Boolean, nullable=False)
-#     has_wifi = db.Column(db.Boolean, nullable=False)
-#     has_sockets = db.Column(db.Boolean, nullable=False)
-#     can_take_calls = db.Column(db.Boolean, nullable=False)
-#     coffee_price = db.Column(db.String(250), nullable=True)
+# Cafe TABLE Configuration
+class Task(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    description= db.Column(db.String(250), unique=True, nullable=False)
 
-    # def to_dict(self):
-    #     return {column.name: getattr(self, column.name) for column in self.__table__.columns}
+
+# def to_dict(self):
+#     return {column.name: getattr(self, column.name) for column in self.__table__.columns}
 
 
 @app.route("/")
@@ -56,6 +40,13 @@ def home():
 
     return render_template("index.html")
 
+
+@app.route("/new-task", methods=["POST", "GET"])
+def new_task():
+    form = NewTask(meta={'csrf': False})
+    if form.validate_on_submit():
+        return redirect(url_for("home"))
+    return render_template("new_task.html", form=form)
 
 
 # @app.route("/search")
