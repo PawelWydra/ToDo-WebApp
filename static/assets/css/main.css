@@ -2921,7 +2921,11 @@ input, select, textarea {
      }
 
     #submit {
-                position: relative;
                 margin : 10%;
                 min-width: 256px;
+                font-weight: bold;
                }
+    .form-box {
+                margin: 5% 10%;
+                text-align: center;
+    }
