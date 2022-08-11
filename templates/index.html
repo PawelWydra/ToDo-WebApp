@@ -1,4 +1,8 @@
 {% extends "base.html" %}
+{% block title %}
+	<h2> Hi, What's first we do?</h2>
+	<h3>It's a free to do list application</h3>
+{% endblock %}
 {% block content %}
 
 
@@ -6,37 +10,24 @@
 				<div id="main-wrapper">
 					<div class="container">
 						<h2>Your list</h2>
-						<div class="todo row">
-							<div class="col-4 droptarget">
-
-								<!-- Box -->
-									<section class="box feature">
-										<a href="{{ url_for('new_task') }}">
-											<div class="card border-success mb-3 mx-auto" style="max-width: 18rem; text-align: center; border-radius: 1em;">
-											  <div class="card-body text-success">
-												<h5 class="card-title">Add New Card</h5>
-												<p class="card-text"><i class="fa-solid fa-plus fa-7x"></i></p>
-												  <button type="button" class="btn btn-outline-success my-4">Add</button>
-											  </div>
-											</div>
-										</a>
-									</section>
-
-							</div>
-
-							<div class="col-4 droptarget">
+						<div class="todo row mb-4">
+							{% for task in all_tasks %}
+							<div class="col-4 col-md-12">
 								<!-- Box -->
 									<section class="box feature">
 									<div class="card border-success mb-3 mx-auto" style="max-width: 18rem; text-align: center; border-radius: 1em;">
 									  <div class="card-body text-success">
-										<h5 class="card-title">Task #1</h5>
-										<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+										<h5 class="card-title">Task {{ task.id }}</h5>
+										<p class="card-text">{{ task.description }}</p>
 										  <button type="button" class="btn btn-outline-success my-4">Done!</button>
 									  </div>
 									</div>
 									</section>
-
 							</div>
+							{% endfor %}
+						</div>
+						<div class="d-grid col-4 mx-auto" >
+						<a href="{{ url_for('new_task') }}" class="btn btn-outline-secondary btn-lg"> Add New Task</a>
 						</div>
 					</div>
 				</div>

@@ -1928,7 +1928,7 @@ input, select, textarea {
 		#logo h1 {
 			background: #ff4486;
 			color: #fff;
-			border-radius: 6px;
+			border-radius: 8px;
 			font-family: 'Oleo Script', serif;
 			font-weight: 400;
 			padding: 0.25em 0.2em 0.25em 0.2em;
@@ -1946,7 +1946,9 @@ input, select, textarea {
 			vertical-align: middle;
 			margin: 0 0 0 1.25em;
 		}
-
+        #logo a:hover {
+                        color:inherit;
+        }
 /* Nav */
 
 	#nav {
@@ -2929,3 +2931,11 @@ input, select, textarea {
                 margin: 5% 10%;
                 text-align: center;
     }
+   .name {
+            margin-bottom: 2em;
+   }
+
+   .circle {
+                border-radius: 50%;
+   }
+
