@@ -9,13 +9,13 @@ from wtforms.validators import DataRequired, Email, Length
 
 class NewTask(FlaskForm):
     name = StringField("Name", validators=[DataRequired()], render_kw={"placeholder": "Task Name"})
-    task_description = CKEditorField("Description", validators=[DataRequired()])
+    task_description = StringField("Description", validators=[DataRequired()])
     submit = SubmitField("Add Task")
 
 
 app = Flask(__name__)
 Bootstrap(app)
-ckeditor = CKEditor(app)
+
 
 # Connect to Database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Task.db'
@@ -26,8 +26,8 @@ db = SQLAlchemy(app)
 # Task TABLE Configuration
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(250), unique=True, nullable=False)
-    description = db.Column(db.String(250), unique=True, nullable=False)
+    name = db.Column(db.String(250), unique=False, nullable=False)
+    description = db.Column(db.String(250), unique=False, nullable=False)
 
 
 # def to_dict(self):

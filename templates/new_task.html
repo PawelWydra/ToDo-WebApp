@@ -8,8 +8,6 @@
 
   <div class="box container">
     <div class="form-box">
-      {{ ckeditor.load() }}
-      {{ ckeditor.config(name='body') }}
       {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "secondary"})}}
     </div>
   </div>

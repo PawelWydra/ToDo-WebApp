@@ -12,22 +12,25 @@
 						<h2>Your list</h2>
 						<div class="todo row mb-4">
 							{% for task in all_tasks %}
-							<div class="col-4 col-md-12">
+							<div class="col-lg-4 col-md-6">
 								<!-- Box -->
 									<section class="box feature">
 									<div class="card border-success mb-3 mx-auto" style="max-width: 18rem; text-align: center; border-radius: 1em;">
 									  <div class="card-body text-success">
-										<h5 class="card-title">Task {{ task.id }}</h5>
-										<p class="card-text">{{ task.description }}</p>
-										  <button type="button" class="btn btn-outline-success my-4">Done!</button>
+										<h5 class="card-title">{{ task.name }}</h5>
+										  	<p class="card-text">Task nr.{{ task.id }}</p>
+										<p class="card-text">Task description: {{ task.description }}</p>
+										  <a type="button" href="#" class="btn btn-outline-success m-4">Done!</a>
+										  <a type="button" href="#" class="btn btn-danger m-4 ">Delete</a>
 									  </div>
 									</div>
 									</section>
 							</div>
 							{% endfor %}
 						</div>
-						<div class="d-grid col-4 mx-auto" >
-						<a href="{{ url_for('new_task') }}" class="btn btn-outline-secondary btn-lg"> Add New Task</a>
+						<div class="d-grid col-4 mx-auto gap-3" >
+						<a href="{{ url_for('new_task') }}" class="btn btn-outline-success btn-lg"> Add New Task</a>
+						<a href="#" class="btn btn-danger btn-lg"> Clear all Tasks</a>
 						</div>
 					</div>
 				</div>
